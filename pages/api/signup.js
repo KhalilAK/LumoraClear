@@ -7,6 +7,9 @@ import dotenv from 'dotenv';
 // Load environment variables
 dotenv.config({ path: '.env.local' });
 
+const adminEmail = process.env.ADMIN_EMAIL;
+const developerEmail = process.env.DEVELOPER_EMAIL;
+
 const pool = new Pool({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
@@ -90,6 +93,15 @@ export default async function handler(req, res) {
 
     const client = await pool.connect();
 
+    let role = 'user';
+
+    if(email === adminEmail){
+        role = 'Admin';
+    }
+    else if(email === developerEmail){
+        role = 'Developer';
+    }
+
     try {
         await client.query('BEGIN');
 
@@ -144,6 +156,7 @@ export default async function handler(req, res) {
         // Hash password
         const passwordHash = await bcrypt.hash(password, 12);
 
+
         // Create user
         const userResult = await client.query(
             `INSERT INTO users (
@@ -166,7 +179,7 @@ export default async function handler(req, res) {
                 passwordHash,
                 phoneEnc.rows[0].id,
                 phoneHash,
-                'user',
+                role,
                 false, // Phone not verified yet
                 true   // Email verified via website form
             ]
