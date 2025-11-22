@@ -133,14 +133,6 @@ export default function Register() {
                     box-sizing: border-box;
                 }
 
-                html, body {
-                    margin: 0;
-                    padding: 0;
-                    width: 100%;
-                    height: 100%;
-                    overflow-x: hidden;
-                }
-
                 #__next {
                     margin: 0;
                     padding: 0;
@@ -198,7 +190,7 @@ export default function Register() {
                                 id="phone"
                                 name="phone"
                                 placeholder="(555) 123-4567"
-                                pattern="^\(\d{3}\)\s\d{3}-\d{4}$"
+                                pattern="^\\(\\d{3}\\)\\s\\d{3}-\\d{4}$"
                                 title="Format must be (555) 123-4567"
                                 required
                                 value={formData.phone}
