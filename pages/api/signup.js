@@ -78,13 +78,19 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'Server misconfigured: invalid ENCRYPTION_KEY' });
     }
 
-    const { fullName, email, phone, password } = req.body;
+    const { fullName, email, phone, password, dob} = req.body;
 
+    console.log(fullName, email, phone, password);
     // Validation
-    if (!fullName || !email || !phone || !password) {
+    if (!fullName || !email || !phone || !password || !dob) {
         return res.status(400).json({
-            error: 'All fields required: fullName, email, phone, password'
+            error: 'All fields required: fullName, email, phone, password, dob'
         });
+    }
+
+    const dobDate = new Date(dob);
+    if(isNaN(dobDate.getTime())){
+        return res.status(400).json({error: "Invalid date of birth format"});
     }
 
     if (!validateEmail(email)) {
@@ -143,26 +149,32 @@ export default async function handler(req, res) {
         const encryptedLast = encrypt(lastName);
         const encryptedEmail = encrypt(email);
         const encryptedPhone = encrypt(phone);
+        const encryptedDob = encrypt(dob);
 
         // Store encrypted data
         const firstEnc = await client.query(
-            'INSERT INTO encryptedobject (encrypted, iv, tag) VALUES ($1, $2, $3) RETURNING id',
-            [encryptedFirst.encrypted, encryptedFirst.iv, encryptedFirst.tag]
+            'INSERT INTO encryptedobject (encrypted, iv, tag, created_at) VALUES ($1, $2, $3, $4) RETURNING id',
+            [encryptedFirst.encrypted, encryptedFirst.iv, encryptedFirst.tag, new Date()]
         );
 
         const lastEnc = await client.query(
-            'INSERT INTO encryptedobject (encrypted, iv, tag) VALUES ($1, $2, $3) RETURNING id',
-            [encryptedLast.encrypted, encryptedLast.iv, encryptedLast.tag]
+            'INSERT INTO encryptedobject (encrypted, iv, tag, created_at) VALUES ($1, $2, $3, $4) RETURNING id',
+            [encryptedLast.encrypted, encryptedLast.iv, encryptedLast.tag, new Date()]
         );
 
         const emailEnc = await client.query(
-            'INSERT INTO encryptedobject (encrypted, iv, tag) VALUES ($1, $2, $3) RETURNING id',
-            [encryptedEmail.encrypted, encryptedEmail.iv, encryptedEmail.tag]
+            'INSERT INTO encryptedobject (encrypted, iv, tag, created_at) VALUES ($1, $2, $3, $4) RETURNING id',
+            [encryptedEmail.encrypted, encryptedEmail.iv, encryptedEmail.tag, new Date()]
         );
 
         const phoneEnc = await client.query(
-            'INSERT INTO encryptedobject (encrypted, iv, tag) VALUES ($1, $2, $3) RETURNING id',
-            [encryptedPhone.encrypted, encryptedPhone.iv, encryptedPhone.tag]
+            'INSERT INTO encryptedobject (encrypted, iv, tag, created_at) VALUES ($1, $2, $3, $4) RETURNING id',
+            [encryptedPhone.encrypted, encryptedPhone.iv, encryptedPhone.tag, new Date()]
+        );
+
+        const dobEnc = await client.query(
+            'INSERT INTO encryptedobject (encrypted, iv, tag, created_at) VALUES ($1, $2, $3, $4) RETURNING id',
+            [encryptedDob.encrypted, encryptedDob.iv, encryptedDob.tag, new Date()]
         );
 
         // Hash password
@@ -179,10 +191,9 @@ export default async function handler(req, res) {
                 "passwordHash",
                 phone_number_id,
                 phone_number_hash,
-                role,
-                phone_verified,
-                email_verified
-            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`,
+                dob_id,
+                role
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
             [
                 firstEnc.rows[0].id,
                 lastEnc.rows[0].id,
@@ -191,9 +202,8 @@ export default async function handler(req, res) {
                 passwordHash,
                 phoneEnc.rows[0].id,
                 phoneHash,
+                dobEnc.rows[0].id,
                 role,
-                false, // Phone not verified yet
-                true   // Email verified via website form
             ]
         );
 
