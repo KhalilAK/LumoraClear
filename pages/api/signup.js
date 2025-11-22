@@ -20,7 +20,7 @@ const pool = new Pool({
 
 // Encryption functions (same as your mobile backend)
 const ALGORITHM = 'aes-256-gcm';
-const KEY = Buffer.from(process.env.ENCRYPTION_KEY, 'hex');
+let KEY; // initialized inside handler to avoid throwing at module load when env var is missing
 const IV_LENGTH = 12;
 
 function encrypt(text) {
@@ -64,6 +64,18 @@ function validatePassword(password) {
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    // Ensure encryption key exists and initialize KEY at request time. If missing or invalid, return JSON error.
+    if (!process.env.ENCRYPTION_KEY) {
+        console.error('ENCRYPTION_KEY is not set');
+        return res.status(500).json({ error: 'Server misconfigured: ENCRYPTION_KEY missing' });
+    }
+    try {
+        KEY = Buffer.from(process.env.ENCRYPTION_KEY, 'hex');
+    } catch (e) {
+        console.error('Invalid ENCRYPTION_KEY:', e);
+        return res.status(500).json({ error: 'Server misconfigured: invalid ENCRYPTION_KEY' });
     }
 
     const { fullName, email, phone, password } = req.body;
