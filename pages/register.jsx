@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 export default function Register() {
-    const router = useRouter();
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -106,7 +104,7 @@ export default function Register() {
             if (response.ok) {
                 showMessage(data.message || 'Registration successful! You can now login on the mobile app.', 'success');
                 setTimeout(() => {
-                    router.push('/');
+                    window.location.href="/";
                 }, 2000);
             } else {
                 showMessage(data.error || 'Registration failed. Please try again.', 'error');
@@ -255,7 +253,7 @@ export default function Register() {
                         <button
                             type="button"
                             className="btn-primary cancel"
-                            onClick={() => router.push('/')}
+                            onClick={() => window.location.href = "/"}
                         >
                             Cancel
                         </button>
