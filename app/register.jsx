@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Head from 'next/head';
 import dynamic from 'next/dynamic';
 
 function Register() {
@@ -120,12 +119,7 @@ function Register() {
 
     return (
         <>
-            <Head>
-                <title>Register - LumoraClear</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            </Head>
-
-            <style jsx global>{`
+<style jsx global>{`
                 * {
                     margin: 0;
                     padding: 0;

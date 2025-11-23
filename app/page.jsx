@@ -1,52 +1,12 @@
 'use client'
 
 
-import Head from 'next/head';
 import Link from 'next/link';
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <style>{`
-          .custom_fonts .custom-google-fonts-enabled * {
-            font-family: 'Noto Sans', Helvetica, sans-serif;
-          }
-          .custom_fonts .custom-google-fonts-enabled h1,
-          .custom_fonts .custom-google-fonts-enabled h2,
-          .custom_fonts .custom-google-fonts-enabled h3,
-          .custom_fonts .custom-google-fonts-enabled h4,
-          .custom_fonts .custom-google-fonts-enabled h5,
-          .custom_fonts .custom-google-fonts-enabled h6{
-            font-family: 'Noto Sans', Helvetica, serif;
-          }
-        `}</style>
-
-        <link rel="icon" type="image/x-icon" href="/static/images/lumoraclear.ico" sizes="16x16" />
-
-        <meta property="og:type" content="website" />
-
-        <title>LumoraClear</title>
-        <meta property="og:title" content="LumoraClear" />
-        <meta name="twitter:title" content="LumoraClear" />
-
-        <meta name="description" content="Making medical bills simple, transparent, and clear to understand." />
-        <meta property="og:description" content="Making medical bills simple, transparent, and clear to understand." />
-        <meta name="twitter:description" content="Making medical bills simple, transparent, and clear to understand." />
-
-        <meta property="og:image" content="https://unicorn-images.b-cdn.net/e6d24e01-ff58-49f7-9a2a-2e95ef71efc4?optimizer=gif" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://unicorn-images.b-cdn.net/e6d24e01-ff58-49f7-9a2a-2e95ef71efc4?optimizer=gif" />
-
-        <link href="https://hen-live-37391.uncrn.co/" rel="canonical" />
-        <meta name="twitter:url" content="https://hen-live-37391.uncrn.co/" />
-        <meta property="og:url" content="https://hen-live-37391.uncrn.co/" />
-      </Head>
-
-      <div className="style-black-1 custom-colors-enabled custom_fonts comps live_website unicorn-platform-website custom-google-fonts-enabled comps has-fontSizeH1 has-fontSizeH2 has-fontSizeH3 has-buttonRadius has-buttonShadow has-buttonFontSize has-fontSizeContent has-buttonFontWeight has-fontSizeParagraphs has-buttonVerticalPadding has-buttonHorizontalPadding has-buttonShadow--none has-nocache" id="663667-1059284">
+<div className="style-black-1 custom-colors-enabled custom_fonts comps live_website unicorn-platform-website custom-google-fonts-enabled comps has-fontSizeH1 has-fontSizeH2 has-fontSizeH3 has-buttonRadius has-buttonShadow has-buttonFontSize has-fontSizeContent has-buttonFontWeight has-fontSizeParagraphs has-buttonVerticalPadding has-buttonHorizontalPadding has-buttonShadow--none has-nocache" id="663667-1059284">
 
         {/* Navigation */}
         <nav id="uni-navigation-bar" className="js-nav nav-02">
