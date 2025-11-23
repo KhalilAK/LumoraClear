@@ -74,7 +74,7 @@ export default function Home() {
           </div>
         </nav>
 
-        <style jsx>{`
+        <style>{`
           body {
             overflow-x: hidden;
           }
@@ -190,7 +190,7 @@ export default function Home() {
           </div>
         </div>
 
-        <style jsx>{`
+        <style>{`
           #header-62-755651 .header-62 {
           width:100vw;
             overflow-x: hidden;
@@ -442,7 +442,7 @@ export default function Home() {
           </div>
         </div>
 
-        <style jsx>{`
+        <style>{`
           #features-03-31421 .page-component__wrapper {
             padding-top: 70px !important;
             padding-bottom: 80px !important;
@@ -737,7 +737,7 @@ export default function Home() {
           </div>
         </div>
 
-        <style jsx>{`
+        <style>{`
           #slider-10-140271 .slider-10 {
             overflow-x: hidden;
           }
@@ -866,7 +866,7 @@ export default function Home() {
           </div>
         </div>
 
-        <style jsx>{`
+        <style>{`
           #cta_button-03-405361 .container--mid {
             max-width: 1200px;
           }
@@ -998,7 +998,7 @@ export default function Home() {
           </div>
         </div>
 
-        <style jsx>{`
+        <style>{`
           #posts-05-26831 .page-component__wrapper {
             padding-top: 70px !important;
           }

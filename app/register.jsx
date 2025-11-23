@@ -243,7 +243,7 @@ function Register() {
                 </div>
             </div>
 
-            <style jsx>{`
+            <style>{`
                 .page-container {
                     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
                     background: linear-gradient(-135deg, white 0%, #058aff 100%);
