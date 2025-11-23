@@ -20,10 +20,10 @@ const pool = new Pool({
 
 // Encryption functions (same as your mobile backend)
 const ALGORITHM = 'aes-256-gcm';
-let KEY; // initialized inside handler to avoid throwing at module load when env var is missing
+let KEY: any; // initialized inside handler to avoid throwing at module load when env var is missing
 const IV_LENGTH = 12;
 
-function encrypt(text) {
+function encrypt(text: string) {
     if (!text || typeof text !== 'string') {
         throw new Error('Text to encrypt must be a non-empty string');
     }
@@ -39,29 +39,29 @@ function encrypt(text) {
     };
 }
 
-function hashForSearching(text) {
+function hashForSearching(text:string) {
     if (!text || typeof text !== 'string' || text.trim() === '') {
         return null;
     }
     return crypto.createHash('sha256').update(text.toLowerCase().trim()).digest('hex');
 }
 
-function validateEmail(email) {
+function validateEmail(email:string) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }
 
-function validatePhone(phone) {
+function validatePhone(phone:string) {
     const re = /^\d{10}$/;
     return re.test(phone);
 }
 
-function validatePassword(password) {
+function validatePassword(password:string) {
     const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return re.test(password);
 }
 
-export default async function handler(req, res) {
+export default async function handler(req: , res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
