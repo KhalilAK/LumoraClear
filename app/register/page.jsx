@@ -17,22 +17,23 @@ function Register() {
     const [loading, setLoading] = useState(false);
 
     const handlePhoneInput = (e) => {
-        let digits = e.target.value.replace(/\D/g, '');
-        digits = digits.substring(0, 10);
+        let digits = e.target.value.replace(/\D/g, '').substring(0, 10);
 
-        let formatted = '';
-        if (digits.length > 0) {
-            formatted = '(' + digits.substring(0, 3);
-        }
-        if (digits.length >= 4) {
-            formatted += ') ' + digits.substring(3, 6);
-        }
-        if (digits.length >= 7) {
-            formatted += '-' + digits.substring(6, 10);
+        let formatted = digits;
+
+        if (digits.length > 3 && digits.length <= 6) {
+            formatted = `(${digits.substring(0,3)}) ${digits.substring(3)}`;
+        } else if (digits.length > 6) {
+            formatted = `(${digits.substring(0,3)}) ${digits.substring(3,6)}-${digits.substring(6)}`;
+        } else if (digits.length > 0) {
+            formatted = `(${digits}`;
         }
 
         setFormData({ ...formData, phone: formatted });
+                console.log(formData.phone);
+
     };
+
 
     const handlePasswordInput = (e) => {
         const password = e.target.value;
@@ -170,9 +171,7 @@ function Register() {
                                 id="phone"
                                 name="phone"
                                 placeholder="(555) 123-4567"
-                                pattern="^\\(\\d{3}\\)\\s\\d{3}-\\d{4}$"
-                                title="Format must be (555) 123-4567"
-                                required
+                                pattern="^\(\d{3}\)\s\d{3}-\d{4}$"                                required
                                 value={formData.phone}
                                 onChange={handlePhoneInput}
                             />
