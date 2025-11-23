@@ -8,10 +8,6 @@ export default function Home() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="stylesheet" href="/static/css/main.css" />
-
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans:700|Noto+Sans:400,700&display=swap" rel="stylesheet" />
-
         <style>{`
           .custom_fonts .custom-google-fonts-enabled * {
             font-family: 'Noto Sans', Helvetica, sans-serif;

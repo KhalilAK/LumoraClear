@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 
-export default function Register() {
+function Register() {
     const [formData, setFormData] = useState({
         fullName: '',
         email: '',
@@ -442,3 +443,5 @@ export default function Register() {
         </>
     );
 }
+
+export default dynamic(() => Promise.resolve(Register), { ssr: false });
