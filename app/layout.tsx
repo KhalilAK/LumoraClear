@@ -1,4 +1,4 @@
-import '../public/static/css/main.css'
+import '/public/static/css/main.css'
 import { ReactNode } from 'react'
 
 export const metadata = {

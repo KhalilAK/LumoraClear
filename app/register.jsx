@@ -121,21 +121,6 @@ function Register() {
 
     return (
         <>
-<style jsx global>{`
-                * {
-                    margin: 0;
-                    padding: 0;
-                    box-sizing: border-box;
-                }
-
-                #__next {
-                    margin: 0;
-                    padding: 0;
-                    width: 100%;
-                    height: 100%;
-                }
-            `}</style>
-
             <div className="page-container">
                 <div className="container">
                     <div className="logo">

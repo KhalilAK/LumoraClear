@@ -1360,20 +1360,7 @@ export default function Home() {
         `}</style>
 
         {/* Additional global styles */}
-        <style jsx global>{`
-          .page-component__bg_image_box .page-component__bg_image_box .page-component__bg_overlay_box {
-            position: relative;
-          }
-          body .page-component__bg_overlay_box {
-            position: absolute;
-          }
-          .footer-02__text.content_box a {
-            color: inherit !important;
-          }
-          .footer-04__info {
-            font-size: 14px;
-          }
-        `}</style>
+
       </div>
     </>
   );
